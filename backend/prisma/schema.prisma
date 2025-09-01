@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // возьмём URL из .env
+}
+
+model Organization {
+  id            String   @id @default(cuid())
+  name          String
+  domain        String?
+  locale        String   @default("sr")
+  primaryColor  String?
+  secondaryColor String?
+  logoUrl       String?
+  createdAt     DateTime @default(now())
+}
